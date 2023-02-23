@@ -23,7 +23,7 @@ second = int(
     input("Enter second of release in SS-format, default is '00': ") or "00")
 sim_time = int(
     input("Enter simulation time in hours, default is '48': ") or "48")
-print("Default coordinates is at the middle of Håloglandsbrua.")
+print("\nDefault coordinates is at the middle of Håloglandsbrua.\n")
 latitude = float(input(
     "Enter latitude (N/S) of release in XX.YYY-format, default is '68.459538': ") or "68.459538")
 longditude = float(
