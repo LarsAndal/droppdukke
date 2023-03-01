@@ -13,6 +13,8 @@ from opendrift.models.leeway import Leeway
 lw = Leeway(loglevel=20)  # Set loglevel to 0 for debug information
 
 # User inputs
+print("\nWhat do you want to simulate?\n")
+prop = int(input("PIW unknown state (mean values, default) = 1\nPIW vertical PFD type III = 2\nPIW sitting PFD type I/II = 3\nPIW survival suit (face up) = 4\nPIW scuba suit (face up) = 5\nPIW deceased = 6\n") or "1")
 year = int(input("Enter year of release in YYYY-format: "))
 month = int(input("Enter month of release in MM-format: "))
 day = int(input("Enter day of release in DD-format: "))
@@ -52,7 +54,7 @@ lw.set_config('environment:fallback:y_sea_water_velocity', 0)
 
 # %%
 # Seed leeway elements at defined position and time
-object_type = 1  # PIW-1
+object_type = prop
 start_time = datetime(year, month, day, hour, minute, second)
 lw.seed_elements(lon=longditude, lat=latitude, radius=sim_radius, number=sim_objects,
                  time=start_time, object_type=object_type)
@@ -83,6 +85,6 @@ lw.plot(fast=False)
 d, dsub, dstr, lon, lat = lw.get_density_array(pixelsize_m=2000)
 strand_density = xr.DataArray(
     dstr[-1, :, :], coords={'lon_bin': lon[0:-1], 'lat_bin': lat[0:-1]})
-lw.plot(fast=False, background=strand_density.where(strand_density > 0),
+lw.plot(fast=True, background=strand_density.where(strand_density > 0),
         vmin=0, vmax=100, clabel='Density of stranded elements',
         show_elements=False, linewidth=0)
