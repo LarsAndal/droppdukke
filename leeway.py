@@ -53,6 +53,7 @@ elif choice == 1:
 else:
     print("Invalid input, terminating.")
     exit()
+
 # Atmospheric model for wind
 reader_arome = reader_netCDF_CF_generic.Reader(
     'https://thredds.met.no/thredds/dodsC/sea/norkyst800m/1h/aggregate_be')
