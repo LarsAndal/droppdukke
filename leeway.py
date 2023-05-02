@@ -24,8 +24,8 @@ if choice == 0:
     minute = 0
     second = 0
     sim_time = 7
-    latitude = 68.471
-    longitude = 17.422
+    latitude = 68.471389
+    longitude = 17.422222
     sim_radius = 10
     sim_objects = 100
 elif choice == 1:
