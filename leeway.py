@@ -20,7 +20,7 @@ if choice == 0:
     year = 2023
     month = 4
     day = 30
-    hour = 15
+    hour = 13
     minute = 0
     second = 0
     sim_time = 7
@@ -81,7 +81,7 @@ lw.seed_elements(lon=longitude, lat=latitude, radius=sim_radius, number=sim_obje
 # %%
 # Running model
 lw.run(duration=timedelta(hours=sim_time),
-       time_step=900, time_step_output=3600)
+       time_step=900, time_step_output=1800)
 
 # %%
 # Print and plot results
@@ -92,7 +92,8 @@ print(lw)
 # Note that drift is also depending on wind, which is not shown.
 lw.animation(background=['x_sea_water_velocity', 'y_sea_water_velocity'],
              skip=5,  # show every 5th vector
-             cmap=cmocean.cm.speed, vmin=0, vmax=1.0, bgalpha=.7, land_color='#666666', fast=True, filename='/home/lars/Documents/droppdukke/animasjon.gif')
+             cmap=cmocean.cm.speed, vmin=0, vmax=1.0, bgalpha=.7, land_color='#666666', fast=False,
+             filename='/home/lars/Documents/droppdukke/animasjon.gif')
 
 # %%
 # .. image:: /gallery/animations/example_leeway_0.gif
@@ -104,6 +105,6 @@ lw.plot(fast=False, filename='/home/lars/Documents/droppdukke/end.png')
 d, dsub, dstr, lon, lat = lw.get_density_array(pixelsize_m=1000)
 strand_density = xr.DataArray(
     dstr[-1, :, :], coords={'lon_bin': lon[0:-1], 'lat_bin': lat[0:-1]})
-lw.plot(fast=True, background=strand_density.where(strand_density > 0),
+lw.plot(fast=False, background=strand_density.where(strand_density > 0),
         vmin=0, vmax=100, clabel='Density of stranded elements',
         show_elements=False, linewidth=0, filename='/home/lars/Documents/droppdukke/density.png')
