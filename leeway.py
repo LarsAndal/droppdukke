@@ -16,7 +16,7 @@ lw = Leeway(loglevel=20)  # Set loglevel to 0 for debug information
 choice = int(input(
     "To enter own data enter '1', to use pre configured input press 'Enter': ") or "0")
 if choice == 0:
-    prop = 1
+    prop = 6
     year = 2023
     month = 4
     day = 30
